@@ -1,3 +1,4 @@
+import com.monkgirl.spring5.chapter2.BeanLifeCycle;
 import com.monkgirl.spring5.chapter2.service.Something;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,14 +19,27 @@ public class TestSpring {
 
     private Something something;
 
+    private BeanLifeCycle lifeCycle;
+
     @Autowired
     @Qualifier("apple")
     public void setSomething(Something something) {
         this.something = something;
     }
 
+    @Autowired
+    public void setLifeCycle(BeanLifeCycle lifeCycle) {
+        this.lifeCycle = lifeCycle;
+    }
+
     @Test
     public void testPerson() {
         something.doSomething();
     }
+
+    @Test
+    public void testLifeCycle(){
+        lifeCycle.showLifeCycle();
+    }
+
 }
