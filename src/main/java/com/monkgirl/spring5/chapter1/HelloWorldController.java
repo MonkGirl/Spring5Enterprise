@@ -1,4 +1,4 @@
-package com.monkgirl.spring5;
+package com.monkgirl.spring5.chapter1;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
