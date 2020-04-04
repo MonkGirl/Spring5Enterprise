@@ -26,8 +26,6 @@ public class TestSpring {
 
     @Test
     public void testPerson() {
-        //Person p = new Person();
-        //person.eatSomething();
         something.doSomething();
     }
 }
