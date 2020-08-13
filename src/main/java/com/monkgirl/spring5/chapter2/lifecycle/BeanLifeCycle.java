@@ -1,4 +1,4 @@
-package com.monkgirl.spring5.chapter2;
+package com.monkgirl.spring5.chapter2.lifecycle;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
@@ -20,7 +20,7 @@ import javax.annotation.PreDestroy;
 @Service
 public class BeanLifeCycle implements BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
-    public BeanLifeCycle(){
+    public BeanLifeCycle() {
         System.out.println("1. bean-level: Constructor");
     }
 
@@ -30,12 +30,12 @@ public class BeanLifeCycle implements BeanNameAware, ApplicationContextAware, In
     }
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         System.out.println("8. bean-level: destroy");
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         System.out.println("5. bean-level: afterPropertiesSet");
     }
 
@@ -44,17 +44,17 @@ public class BeanLifeCycle implements BeanNameAware, ApplicationContextAware, In
         System.out.println("3. bean-level: setApplicationContext");
     }
 
-    public void showLifeCycle(){
+    public void showLifeCycle() {
         System.out.println("6. bean-level: show lifeCycle...");
     }
 
     @PostConstruct
-    public void lifeCycleInit(){
+    public void lifeCycleInit() {
         System.out.println("4. bean-level: lifeCycleInit...");
     }
 
     @PreDestroy
-    public void lifeCycleDestroy(){
+    public void lifeCycleDestroy() {
         System.out.println("7. bean-level: lifeCycleDestroy...");
     }
 }

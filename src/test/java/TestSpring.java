@@ -1,11 +1,9 @@
-import com.monkgirl.spring5.chapter2.BeanLifeCycle;
+import com.monkgirl.spring5.chapter2.lifecycle.BeanLifeCycle;
 import com.monkgirl.spring5.chapter2.service.Something;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 /**
  * @author MissYoung
@@ -13,9 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @description
  * @date 2020-04-04 19:31:25
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring-mvc.xml")
-public class TestSpring {
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("classpath:spring-mvc.xml")
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration("classpath:spring-mvc.xml")
+@SpringJUnitConfig(locations = "classpath:spring-mvc.xml")
+class TestSpring {
 
     private Something something;
 
@@ -33,13 +34,23 @@ public class TestSpring {
     }
 
     @Test
-    public void testPerson() {
+    void testPerson() {
         something.doSomething();
     }
 
     @Test
-    public void testLifeCycle(){
+    void testLifeCycle(){
         lifeCycle.showLifeCycle();
     }
 
+    @Test
+    void testContainerLifeCycle(){
+        lifeCycle.showLifeCycle();
+    }
 }
+
+
+
+
+
+

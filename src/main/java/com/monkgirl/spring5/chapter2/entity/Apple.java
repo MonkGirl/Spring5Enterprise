@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Apple implements Eatable, Something {
+    private String name;
     @Override
     public void eat() {
         System.out.println("eating apple...");
