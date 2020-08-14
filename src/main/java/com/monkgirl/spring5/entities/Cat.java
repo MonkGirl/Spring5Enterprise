@@ -1,4 +1,4 @@
-package com.monkgirl.spring5.chapter3.entities;
+package com.monkgirl.spring5.entities;
 
 /**
  * @author MissYoung

@@ -1,4 +1,4 @@
-package com.monkgirl.spring5.chapter2.entity;
+package com.monkgirl.spring5.entities;
 
 import com.monkgirl.spring5.chapter2.service.Something;
 import org.springframework.stereotype.Service;

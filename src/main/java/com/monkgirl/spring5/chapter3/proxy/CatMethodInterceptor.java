@@ -6,10 +6,10 @@ import org.springframework.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 
 /**
- * @Author MissYoung
- * @Version 0.1
- * @Date 2020-08-12 17:01
- * @Description
+ * @author MissYoung
+ * @version 0.1
+ * @date 2020-08-12 17:01
+ * @description
  */
 public class CatMethodInterceptor implements MethodInterceptor {
 

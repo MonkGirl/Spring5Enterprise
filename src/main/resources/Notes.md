@@ -35,7 +35,18 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
   |InstantiationAwareBeanPostProcessorAdapter|适配器类|
   
 * JDK动态代理的条件是被代理的对象必须实现接口。
-* CGLIB动态代理的实现需要实现MethodInterceptor接口，重写intercept()方法。  
+* CGLIB动态代理的实现需要实现MethodInterceptor接口，重写intercept()方法。
+* Spring AOP相关概念
+
+  |概念|解释|
+  |:-----|:-----|
+  |横切关注点（Crosscut concern）|一些具有横切多个不同软件模块的行为|
+  |切面（Aspect）|切面就是对横向关注点的抽象|
+  |连接点（JointPoint）|连接点是在程序执行过程中某个特定的点，Spring只支持方法类型的连接点|
+  |切入点（Pointcut）|切入点是匹配连接点的拦截规则，在满足这个切入点的连接点上运行通知，切入点表达式如何和连接点匹配是AOP的核心，Spring默认使用AspectJ切入点语法|
+  |通知（Advice）|在切面上拦截到某个特定的连接点之后执行的动作|
+  |目标对象（Target Object）|目标对象，被一个或多个切面所通知的对象，及业务中需要进行增强的业务对象|
+  |织入（Weaving）|织入是把切面作用到目标对象，然后产生一个代理对象的过程|
+  |引入（Introduction）|引入是用来在运行时给一个类声明额外的方法或属性，即不需为类实现一个接口，就能使用接口中的方法|  
   
-   
-   
+* proxy-target-class="true"强制使用CGLIB代理  

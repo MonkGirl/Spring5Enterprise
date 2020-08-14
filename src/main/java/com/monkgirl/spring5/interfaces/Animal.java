@@ -1,4 +1,4 @@
-package com.monkgirl.spring5.chapter3.interfaces;
+package com.monkgirl.spring5.interfaces;
 
 /**
  * @author MissYoung

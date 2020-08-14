@@ -1,7 +1,7 @@
-package com.monkgirl.spring5.chapter2.entity;
-
+package com.monkgirl.spring5.entities;
 import com.monkgirl.spring5.chapter2.service.Eatable;
 import com.monkgirl.spring5.chapter2.service.Something;
+import com.monkgirl.spring5.interfaces.Fruit;
 import org.springframework.stereotype.Service;
 
 /**

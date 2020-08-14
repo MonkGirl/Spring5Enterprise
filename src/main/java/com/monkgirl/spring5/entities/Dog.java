@@ -1,6 +1,6 @@
-package com.monkgirl.spring5.chapter3.entities;
+package com.monkgirl.spring5.entities;
 
-import com.monkgirl.spring5.chapter3.interfaces.Animal;
+import com.monkgirl.spring5.interfaces.Animal;
 
 /**
  * @author MissYoung
