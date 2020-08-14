@@ -35,6 +35,7 @@ class TestProxy {
         enhancer.setCallback(new CatMethodInterceptor());
         //生成代理对象
         Cat cat = (Cat) enhancer.create();
+
         cat.roar();
         System.out.println(cat);
     }
