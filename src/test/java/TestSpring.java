@@ -19,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 class TestSpring {
 
     private Something something;
-
     private BeanLifeCycle lifeCycle;
 
     @Autowired

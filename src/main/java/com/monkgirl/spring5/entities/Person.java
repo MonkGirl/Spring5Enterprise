@@ -1,7 +1,7 @@
 package com.monkgirl.spring5.entities;
 
 import com.monkgirl.spring5.chapter2.service.Something;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @author MissYoung
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * @description
  * @date 2020-04-04 22:25
  */
-@Service
+@Component
 public class Person implements Something{
 
     /*private Eatable eatable;
@@ -27,5 +27,9 @@ public class Person implements Something{
     @Override
     public void doSomething(){
         System.out.println("This is Person, doSomething...");
+    }
+
+    public void say(){
+        System.out.println("Hello Spring 5.");
     }
 }

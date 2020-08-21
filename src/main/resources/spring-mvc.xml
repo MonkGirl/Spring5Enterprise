@@ -2,16 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--配置自动扫描的包-->
-    <context:component-scan base-package="com.monkgirl.spring5" />
+    <context:component-scan base-package="com.monkgirl.spring5"/>
     <!--配置试图解析器，把handler方法返回值解析为实际的物理视图-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/pages/" />
-        <property name="suffix" value=".jsp" />
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
+
+    <aop:aspectj-autoproxy/>
 
     <aop:config proxy-target-class="true">
         <aop:aspect id="dateLog" ref="handler">
@@ -20,4 +22,11 @@
             <aop:after method="endEatFruitDate" pointcut-ref="eatFruit"/>
         </aop:aspect>
     </aop:config>
+
+    <bean id="waiterProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyTargetClass="true"
+          p:interfaces="com.monkgirl.spring5.interfaces.Management"
+          p:target-ref="waiter"
+          p:interceptorNames="manager"
+    />
 </beans>
