@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ArgsAspect {
-    @Before("args(java.lang.Integer)")
+    //@Before("args(java.lang.Integer)")
     public void before(){
         System.out.println("args before java.lang.String");
     }
 
-    @After("@args(com.monkgirl.spring5.annotation.Listen)")
+   // @After("@args(com.monkgirl.spring5.annotation.Listen)")
     public void after(){
         System.out.println("@args after Listen");
     }

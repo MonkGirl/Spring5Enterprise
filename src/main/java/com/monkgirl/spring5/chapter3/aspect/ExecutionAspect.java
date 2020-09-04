@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExecutionAspect {
 
-    @AfterReturning("execution(* com.monkgirl.spring5.interfaces.Factory.make())")
+    //@AfterReturning("execution(* com.monkgirl.spring5.interfaces.Factory.make())")
     public void make(){
         System.out.println("Execute make...");
     }

@@ -1,7 +1,5 @@
-import com.monkgirl.spring5.entities.FreshFoodFactory;
-import com.monkgirl.spring5.entities.HuaweiPhoneFactory;
-import com.monkgirl.spring5.entities.Person;
-import com.monkgirl.spring5.entities.PhoneFactory;
+import com.monkgirl.spring5.entities.*;
+import com.monkgirl.spring5.interfaces.Listener;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,21 +21,35 @@ class TestAdvice {
     private FreshFoodFactory factory;
 
     @Autowired
+    @Qualifier("foodFactory")
+    private FoodFactory foodFactory;
+
+    @Autowired
     private PhoneFactory phoneFactory;
 
     @Autowired
     private HuaweiPhoneFactory huawei;
+
+    //    @Autowired
+//    private Computer computer;
     @Test
-    public void testAdvice(){
+    void testAdvice() {
         person.say();
     }
 
     @Test
-    public void testArgs(){
+    void testArgs() {
         factory.make();
         factory.delivery("Fresh Food.");
         factory.testArgsAnnotation(factory);
         phoneFactory.make();
         huawei.huawei();
+    }
+
+    @Test
+    void testThisAndTarget() {
+        foodFactory.make();
+        Listener listener = (Listener) foodFactory;
+        listener.listen();
     }
 }

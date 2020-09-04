@@ -14,6 +14,7 @@
     </bean>
 
     <aop:aspectj-autoproxy/>
+    <context:annotation-config/>
 
     <aop:config proxy-target-class="true">
         <aop:aspect id="dateLog" ref="handler">

@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class TargetAspect {
-    @Before("target(com.monkgirl.spring5.entities.HuaweiPhoneFactory)")
+    //@Before("target(com.monkgirl.spring5.entities.HuaweiPhoneFactory)")
     public void before(){
         System.out.println("Target to PhoneFactory.");
     }
 
-    @After("@target(com.monkgirl.spring5.annotation.Run)")
+   // @After("@target(com.monkgirl.spring5.annotation.Run)")
     public void after(){
         System.out.println("@Target to PhoneFactory.");
     }

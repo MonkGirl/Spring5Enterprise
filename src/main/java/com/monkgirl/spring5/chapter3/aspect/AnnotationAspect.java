@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AnnotationAspect {
 
-    @AfterReturning("@annotation(com.monkgirl.spring5.annotation.Log)")
+  //  @AfterReturning("@annotation(com.monkgirl.spring5.annotation.Log)")
     public void log(){
         System.out.println("Log is work...");
     }

@@ -93,3 +93,6 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 | execution(* make(int, String)) | 匹配make(int, String)方法            |
 
 * target()表示目标类型是指定的类型时，目标类型的所有方法都匹配到。target()可以匹配所有实现类及其子孙类中的所有方法。“@target”匹配标注了指定注解的类。
+* this()与target()几乎是等效的，两者在引介切面的情况下略有差别。
+* @DeclareParents注解有AspectJ提供，指定满足表达式的类将自动实现某些接口，在运行时会将生成的代理类实现指定的接口。
+* within()与execution()的功能类似，两者的区别是，within()定义的连接点的最小范围是类级别，而execution()定义的连接点的最小范围可以精确到方法的入参，因此可以认为execution()涵盖了within()的功能。
