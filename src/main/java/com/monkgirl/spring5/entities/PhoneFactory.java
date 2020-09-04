@@ -20,4 +20,6 @@ public class PhoneFactory implements Factory {
     public void delivery(String address) {
         System.out.println("delivery phone to " + address);
     }
+
+    public void testWithin(){}
 }

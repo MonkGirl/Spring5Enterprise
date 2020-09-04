@@ -30,6 +30,10 @@ class TestAdvice {
     @Autowired
     private HuaweiPhoneFactory huawei;
 
+    @Autowired
+    @Qualifier("iPhoneFactory")
+    private IPhoneFactory iPhoneFactory;
+
     //    @Autowired
 //    private Computer computer;
     @Test
@@ -51,5 +55,14 @@ class TestAdvice {
         foodFactory.make();
         Listener listener = (Listener) foodFactory;
         listener.listen();
+    }
+
+    @Test
+    void testWithinAspect(){
+        foodFactory.make();
+        System.out.println("----------");
+        iPhoneFactory.testWithin();
+        System.out.println("++++++++++");
+        iPhoneFactory.delivery("Rose");
     }
 }
