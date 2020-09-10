@@ -2,16 +2,13 @@ import com.monkgirl.spring5.chapter3.enhancer.SpringAfterAdvice;
 import com.monkgirl.spring5.chapter3.enhancer.SpringAroundAdvice;
 import com.monkgirl.spring5.chapter3.enhancer.SpringBeforeAdvice;
 import com.monkgirl.spring5.chapter3.enhancer.SpringThrowAdvice;
-import com.monkgirl.spring5.entities.*;
-import com.monkgirl.spring5.interfaces.Management;
+import com.monkgirl.spring5.comm.entities.*;
+import com.monkgirl.spring5.comm.interfaces.Management;
 import org.junit.jupiter.api.Test;
-import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.context.ContextLoader;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.concurrent.TimeUnit;
 

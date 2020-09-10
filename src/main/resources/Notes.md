@@ -98,3 +98,28 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 * within()与execution()的功能类似，两者的区别是，within()定义的连接点的最小范围是类级别，而execution()定义的连接点的最小范围可以精确到方法的入参，因此可以认为execution()涵盖了within()的功能。
 
 * Spring AOP的实现是通过 创建目标对象的代理类，并对目标对象进行拦截来实现的。
+
+
+
+# Spring WebFlux
+
+* **编译器重排序**：编译器保证不改变单线程执行结果的前提下，可以调整多线程语句执行顺序。
+* **处理器重排序**：如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。
+* 响应式编程(Reactive Programmaing)就是与异步数据流交互的一种编程方式。原则：保持数据的不变性；没有共享；阻塞是有害的。
+* 在Reactor中，数据流发布者（Publisher）由Flux和Mono两个类表示，它们都提供了丰富的操作符（operator）。一个Flux对象代表一个包含0个或多个（0..N）元素的响应式序列，而一个Mono对象代表0或一个（0..1）元素的结果。
+* 作为数据流的发布者，Flux和Mono都可以发出三种数据信号 ，元素值、错误信号和完成信号。错误信号和完成信号都是终止信号 。
+* Reactor提供了多线程工具类Schedulers，该类提供的静态方法可以更快创建以下几种多线程环境。
+  * 获取当前线程环境Schedulers.immediate().
+  * 获取可重用的单线程环境Schedulers.single().
+  * 获取弹性线程池环境Schedulers.elastic().
+  * 获取固定大小线程池环境Schedulers.parallel().
+  * 获取自定义线程池环境Schedulers.fromExecutorService(ExecutorService).
+* 从SpringMVC项目可以直接升级到Spring WebFlux，只需要在web.xml中的DispatcherServlet中增加属性<async-supported>true</async-supported>.
+* 传统SpringMVC由两个注解来配合工作
+  * @Controller：定义处理逻辑。
+  * @RequestMapping：定义方法对特定URL进行响应。
+
+* WebFlux函数式开发中，提供了类似HandlerFunction和RouterFunction接口来实现SpringMVC的类似功能。
+  * HandlerFunction：相当于Controller中的具体处理方法，输入为请求，输出为封装在Mono中的响应。
+  * RouterFunction：相当于RequestMapping，将URL映射到具体的HandlerFunction，输入为请求，输出为封装在Mono中的HandlerFunction。
+* 在WebFlux中，请求和响应不再是WebMVC中的ServletRequest和ServletResponse，而是ServerRequest和ServerResponse，它们提供了对非阻塞和回压特性的支持，以及Http消息体与响应式类型Mono和Flux的转换方法。

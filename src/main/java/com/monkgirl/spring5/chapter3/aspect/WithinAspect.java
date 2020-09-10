@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WithinAspect {
 
-    @Before("within(com.monkgirl.spring5.entities.FoodFactory)")
+    @Before("within(com.monkgirl.spring5.comm.entities.FoodFactory)")
     public void before(){
         System.out.println("Before within aspect ...");
     }

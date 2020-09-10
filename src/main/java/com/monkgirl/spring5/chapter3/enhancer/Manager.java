@@ -1,6 +1,6 @@
 package com.monkgirl.spring5.chapter3.enhancer;
 
-import com.monkgirl.spring5.interfaces.Management;
+import com.monkgirl.spring5.comm.interfaces.Management;
 import org.springframework.aop.support.DelegatingIntroductionInterceptor;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.monkgirl.spring5.chapter3.aspect;
 
-import com.monkgirl.spring5.entities.DefaultListener;
-import com.monkgirl.spring5.interfaces.Listener;
+import com.monkgirl.spring5.comm.entities.DefaultListener;
+import com.monkgirl.spring5.comm.interfaces.Listener;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareParents;
 import org.springframework.core.Ordered;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ListenerAspect implements Ordered {
 
-    @DeclareParents(value="com.monkgirl.spring5.entities.FoodFactory", defaultImpl = DefaultListener.class)
+    @DeclareParents(value="com.monkgirl.spring5.comm.entities.FoodFactory", defaultImpl = DefaultListener.class)
     public Listener listener;
 
     @Override

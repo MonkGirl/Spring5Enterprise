@@ -26,7 +26,7 @@
 
     <bean id="waiterProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
           p:proxyTargetClass="true"
-          p:interfaces="com.monkgirl.spring5.interfaces.Management"
+          p:interfaces="com.monkgirl.spring5.comm.interfaces.Management"
           p:target-ref="waiter"
           p:interceptorNames="manager"
     />

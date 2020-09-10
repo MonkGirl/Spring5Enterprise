@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class AllAspect {
 
-    @Before("execution(* com.monkgirl.spring5.entities.Person.*(..))")
+    @Before("execution(* com.monkgirl.spring5.comm.entities.Person.*(..))")
     public void before(){
         System.out.println("Aspect Before Advice...");
     }
 
-    @Around("execution(* com.monkgirl.spring5.entities.Person.*(..))")
+    @Around("execution(* com.monkgirl.spring5.comm.entities.Person.*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable{
         System.out.println("Around Advice Before...");
         Object obj = joinPoint.proceed();
@@ -27,17 +27,17 @@ public class AllAspect {
         return obj;
     }
 
-    @AfterReturning("execution(* com.monkgirl.spring5.entities.Person.*(..))")
+    @AfterReturning("execution(* com.monkgirl.spring5.comm.entities.Person.*(..))")
     public void afterReturning(){
         System.out.println("AfterReturning Advice...");
     }
 
-    @After("execution(* com.monkgirl.spring5.entities.Person.*(..))")
+    @After("execution(* com.monkgirl.spring5.comm.entities.Person.*(..))")
     public void after(){
         System.out.println("After Advice...");
     }
 
-    @AfterThrowing("execution(* com.monkgirl.spring5.entities.Person.*(..))")
+    @AfterThrowing("execution(* com.monkgirl.spring5.comm.entities.Person.*(..))")
     public void afterThrowing(){
         System.out.println("After Throwing Advice...");
     }

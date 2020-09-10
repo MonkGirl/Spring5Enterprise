@@ -1,5 +1,5 @@
-import com.monkgirl.spring5.entities.*;
-import com.monkgirl.spring5.interfaces.Listener;
+import com.monkgirl.spring5.comm.entities.*;
+import com.monkgirl.spring5.comm.interfaces.Listener;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,8 +34,6 @@ class TestAdvice {
     @Qualifier("iPhoneFactory")
     private IPhoneFactory iPhoneFactory;
 
-    //    @Autowired
-//    private Computer computer;
     @Test
     void testAdvice() {
         person.say();

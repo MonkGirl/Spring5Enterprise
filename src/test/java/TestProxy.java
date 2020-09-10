@@ -1,8 +1,8 @@
 import com.monkgirl.spring5.chapter3.proxy.AnimalInvocationHandler;
 import com.monkgirl.spring5.chapter3.proxy.CatMethodInterceptor;
-import com.monkgirl.spring5.entities.Cat;
-import com.monkgirl.spring5.entities.Dog;
-import com.monkgirl.spring5.interfaces.Animal;
+import com.monkgirl.spring5.comm.entities.Cat;
+import com.monkgirl.spring5.comm.entities.Dog;
+import com.monkgirl.spring5.comm.interfaces.Animal;
 import org.junit.jupiter.api.Test;
 import org.springframework.cglib.proxy.Enhancer;
 
