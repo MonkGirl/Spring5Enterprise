@@ -18,7 +18,7 @@
 
     <aop:config proxy-target-class="true">
         <aop:aspect id="dateLog" ref="handler">
-            <aop:pointcut id="eatFruit" expression="execution(* com.monkgirl.spring5.entities.*.eat(..))"/>
+            <aop:pointcut id="eatFruit" expression="execution(* com.monkgirl.spring5.comm.entities.*.eat(..))"/>
             <aop:before method="startEatFruitDate" pointcut-ref="eatFruit"/>
             <aop:after method="endEatFruitDate" pointcut-ref="eatFruit"/>
         </aop:aspect>
@@ -30,4 +30,5 @@
           p:target-ref="waiter"
           p:interceptorNames="manager"
     />
+    <import resource="spring-chapter7.xml"/>
 </beans>
