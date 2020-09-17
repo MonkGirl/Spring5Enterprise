@@ -104,17 +104,24 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 # Spring WebFlux
 
 * **编译器重排序**：编译器保证不改变单线程执行结果的前提下，可以调整多线程语句执行顺序。
+
 * **处理器重排序**：如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。
+
 * 响应式编程(Reactive Programmaing)就是与异步数据流交互的一种编程方式。原则：保持数据的不变性；没有共享；阻塞是有害的。
+
 * 在Reactor中，数据流发布者（Publisher）由Flux和Mono两个类表示，它们都提供了丰富的操作符（operator）。一个Flux对象代表一个包含0个或多个（0..N）元素的响应式序列，而一个Mono对象代表0或一个（0..1）元素的结果。
+
 * 作为数据流的发布者，Flux和Mono都可以发出三种数据信号 ，元素值、错误信号和完成信号。错误信号和完成信号都是终止信号 。
+
 * Reactor提供了多线程工具类Schedulers，该类提供的静态方法可以更快创建以下几种多线程环境。
   * 获取当前线程环境Schedulers.immediate().
   * 获取可重用的单线程环境Schedulers.single().
   * 获取弹性线程池环境Schedulers.elastic().
   * 获取固定大小线程池环境Schedulers.parallel().
   * 获取自定义线程池环境Schedulers.fromExecutorService(ExecutorService).
+  
 * 从SpringMVC项目可以直接升级到Spring WebFlux，只需要在web.xml中的DispatcherServlet中增加属性<async-supported>true</async-supported>.
+
 * 传统SpringMVC由两个注解来配合工作
   * @Controller：定义处理逻辑。
   * @RequestMapping：定义方法对特定URL进行响应。
@@ -122,4 +129,48 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 * WebFlux函数式开发中，提供了类似HandlerFunction和RouterFunction接口来实现SpringMVC的类似功能。
   * HandlerFunction：相当于Controller中的具体处理方法，输入为请求，输出为封装在Mono中的响应。
   * RouterFunction：相当于RequestMapping，将URL映射到具体的HandlerFunction，输入为请求，输出为封装在Mono中的HandlerFunction。
+  
 * 在WebFlux中，请求和响应不再是WebMVC中的ServletRequest和ServletResponse，而是ServerRequest和ServerResponse，它们提供了对非阻塞和回压特性的支持，以及Http消息体与响应式类型Mono和Flux的转换方法。
+
+# Kotlin
+
+* Kotlin特性
+
+  * 完全兼容java
+  * 使用极少的代码量可实现功能，且代码末尾无需分号结尾。
+  * 是空安全的，使用Kotlin语言可以有效避免空指针出现。
+  * 支持Lambda表达式。
+  * public：默认作用域。
+  * internal：同模块可见。
+  * protected：类似java中protected，对子类可见。
+  * private：当前源文件内使用，常量val和变量var，默认都是private。
+
+* Kotlin函数的定义需要用fun来定义，Kotlin函数可以指定返回值类型，也可以使用推断返回值类型，无返回值可以使用Unit标示，也可以不写明返回值。
+
+# Spring 5
+
+  ## HTTP2
+
+* 二进制协议：HTTP 1.x的解析是基于文本的，HTTP 2的解析是基于二进制的。
+
+* 多路复用：每个请求都有一个ID，这样在一个连接上可以发送多个请求，并且在传输过程中是混杂在一起的，接收方可以根据请求的ID将请求再归属 到不同的服务端请求里。
+
+* 请求优先级：为了避免线头堵塞（Head Of Line Block），优先加载重要资源。
+
+* 报头压缩：HTTP2协议拥有HPACK，HPACK的目的是尽可能减少客户端请求与服务器响应之间的头部信息重复所导致的性能开销，
+
+* 服务端推送：HTTP 1.x只能是客户端主动拉取资源，HTTP2支持从服务器端推送资源到客户端。
+
+* 流控制：流控制管理数据的传输，使数据发送者不会让数据接收者不堪重负。
+
+
+  ## JUnit5
+
+* JUnit Platform是基于JVM的运行测试的基础框架，JUnit Platform定义了开发运行在这个测试框架上的TestEngine API。
+
+* JUnit Jupiter是在JUnit5中编写测试用例和扩展的新编程模式和扩展模型。
+
+* JUnit Vintage提供了一个TestEngine在平台上运行基于JUnit3和JUnit4的测试。
+
+# Log4j2
+
