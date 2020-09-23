@@ -3,7 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--配置自动扫描的包-->
     <context:component-scan base-package="com.monkgirl.spring5"/>
@@ -11,10 +12,24 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/pages/"/>
         <property name="suffix" value=".jsp"/>
+        <property name="order" value="1"/>
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/template/" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="order" value="0"/>
+    </bean>
+
+    <!-- 配置@Aspectj切面的bean创建代理-->
     <aop:aspectj-autoproxy/>
     <context:annotation-config/>
+    <mvc:annotation-driven/>
 
     <aop:config proxy-target-class="true">
         <aop:aspect id="dateLog" ref="handler">
@@ -30,5 +45,10 @@
           p:target-ref="waiter"
           p:interceptorNames="manager"
     />
+
     <import resource="spring-chapter7.xml"/>
+    <import resource="spring-chapter11.xml"/>
+    <import resource="spring-jdbc.xml"/>
+    <import resource="spring-mybatis.xml"/>
+    <import resource="classpath:druid/spring-druid.xml"/>
 </beans>

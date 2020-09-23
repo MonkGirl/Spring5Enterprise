@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-        <constructor-arg ref="simpleClientHttpRequestFactory" />
+    <bean id="restTemplateNew" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="simpleClientHttpRequestFactoryNew" />
         <property name="messageConverters">
             <list>
                 <bean class="org.springframework.http.converter.FormHttpMessageConverter" />
@@ -19,7 +19,7 @@
         </property>
     </bean>
 
-    <bean id="simpleClientHttpRequestFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+    <bean id="simpleClientHttpRequestFactoryNew" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
         <property name="readTimeout" value="10000" />
         <property name="connectTimeout" value="5000" />
     </bean>

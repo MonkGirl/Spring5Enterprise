@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 //@ContextConfiguration("classpath:spring-mvc.xml")
 //@ExtendWith(SpringExtension.class)
 //@ContextConfiguration("classpath:spring-mvc.xml")
-@SpringJUnitConfig(locations = "classpath:spring-mvc.xml")
+@SpringJUnitConfig(locations = "classpath:spring/spring-mvc.xml")
 class TestSpring {
 
     private Something something;

@@ -173,4 +173,53 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 * JUnit Vintage提供了一个TestEngine在平台上运行基于JUnit3和JUnit4的测试。
 
 # Log4j2
+* Configuration根节点
+    * status指定Log4j2本身的日志打印级别。
+    * monitorinterval属性，用于指定Log4j自动重新配置的监测间隔时间，单位是秒，最小值5S
+    
+* Appenders元素：是Configuration元素的子节点，可以指定日志输出路径，常见的日志输出路径有控制台、文件和网络Socket等。
+    * Console：用于将日志输出到控制台。name属性指定Appender的名字;target属性可以为SYSTEM_OUT或SYSTEM_ERR,一般使用SYSTEM_OUT;PatternLayout设置日志输出格式。
+    * File：用于将日志输出到指定文件。fileName指定输出日志的目标文件，带全路径的文件名
+    * RollingFile：用于将日志输出到滚动文件中。Policies元素指定滚动日志的策略
+        * TimeBasedTriggeringPolicy：基于时间的滚动策略。interval配置滚动一次的时间，默认1h，modulate=true用于调整时间。
+        * SizeBasedTriggeringPolicy：基于指定文件大小的滚动策略。size属性用来定义每个日志文件的大小。
+    
+* Loggers元素
+    * Root：用于指定项目的根日志，如果没有单独指定Logger，则会使用Root作为默认的日志输出。level属性，从低到高顺序All<Trace<Debug<Info<Warn<Error<Fatal<OFF;AppenderRef是Root的子节点，用于指定将日志输出到Appenders元素定义的Appenders中。
+    * Logger：用于单独指定日志的形式。
+    
+* PatternLayout：用于控制日志输出格式。     
 
+    # Spring MVC
+
+* \<aop:aspectj-autoproxy/\>声明自动为spring容器中那些配置@aspectj切面的bean创建代理，织入切面。当然，spring在内部依旧采用annotationAwareAspectAutoProxyCreator进行自动代理的创建工作，但具体实现的细节已经被\<aop:aspectj-autoproxy/\>隐藏起来了。\<aop:aspectj-autoproxy/\>有一个proxy-target-class属性，默认为false，表示使用jdk动态代理织入增强，当配置为true时，表示使用CGLIB动态代理技术织入增强。不过即使设置为false，如果目标类没有声明接口，则spring将自动使用CGLIB动态代理。
+
+* \<context:annotation-config/\>是用于激活那些已经在Spring容器中注册过的bean上面的注解，也就是显示的向Spring注册
+
+    * AutowriedAnnotationBeanPostProcessor
+
+    * CommonAnnotationBeanPostProcessor
+
+    * PersistenceAnnotationBeanPostProcessor
+
+    * RequiredAnnotationBeanPostProcessor
+
+        这四个Processor，注册这4个BeanPostProcessor的作用，就是为了系统能够识别相应的注解。BeanPostProcessor就是处理注解的处理器。
+    
+* \<mvc:annotation-driven/\>，该注解会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean，这是Spring MVC为“@Controller”分发请求所必需的，并且提供了数据绑定支持、“@NumberFormatannotation”支持，“@DataTimeFormat”支持、“@Valid”读写XML的支持（JAXB）和读写JSON的支持（默认jackson）等功能。
+
+  # Spring Mybatis
+
+* spring-jdbc.xml中可以使用`<context:property-placeholder location="***"/>`加载spring-jdbc.properties属性文件，也可以使用注册bean的方法加载属性文件
+
+    ​	<bean id="***" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+
+    ​	<property name="location" value="classpath:***"/>
+
+    </bean>
+
+    ​      
+
+    ​      
+
+      

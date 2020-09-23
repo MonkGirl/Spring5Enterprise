@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020-08-13 17:26
  * @description
  */
-@SpringJUnitConfig(locations = "classpath:spring-mvc.xml")
+@SpringJUnitConfig(locations = "classpath:spring/spring-mvc.xml")
 class TestAOP {
 
     @Autowired
@@ -67,7 +67,7 @@ class TestAOP {
         //Waiter waiter = (Waiter) factory.getProxy();
         //waiter.serve("Icarus");
         //waiter.driving("Aurora");
-        ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-mvc.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring/spring-mvc.xml");
         Waiter waiterProxy = (Waiter) ac.getBean("waiterProxy");
         Management management = (Management) waiterProxy;
         management.manage("boss");

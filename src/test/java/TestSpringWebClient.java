@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
  * @date 2020-09-14 15:01
  * @description
  */
-@SpringJUnitConfig(locations = "classpath:spring-mvc.xml")
+@SpringJUnitConfig(locations = "classpath:spring/spring-mvc.xml")
 class TestSpringWebClient {
 
     @Autowired

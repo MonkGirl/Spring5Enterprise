@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
  * @date 2020-08-18 14:33
  * @description
  */
-@SpringJUnitConfig(locations = "classpath:spring-mvc.xml")
+@SpringJUnitConfig(locations = "classpath:spring/spring-mvc.xml")
 class TestAdvice {
     @Autowired
     private Person person;
