@@ -1,3 +1,5 @@
+package chapter6;
+
 import com.monkgirl.spring5.chapter3.enhancer.SpringAfterAdvice;
 import com.monkgirl.spring5.chapter3.enhancer.SpringAroundAdvice;
 import com.monkgirl.spring5.chapter3.enhancer.SpringBeforeAdvice;

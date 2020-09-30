@@ -1,4 +1,7 @@
+
+
 # Spring IoC容器
+
 * IoC流程
     * 创建BeanFactory 
         * IoC启动开始
@@ -192,9 +195,9 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 
     # Spring MVC
 
-* \<aop:aspectj-autoproxy/\>声明自动为spring容器中那些配置@aspectj切面的bean创建代理，织入切面。当然，spring在内部依旧采用annotationAwareAspectAutoProxyCreator进行自动代理的创建工作，但具体实现的细节已经被\<aop:aspectj-autoproxy/\>隐藏起来了。\<aop:aspectj-autoproxy/\>有一个proxy-target-class属性，默认为false，表示使用jdk动态代理织入增强，当配置为true时，表示使用CGLIB动态代理技术织入增强。不过即使设置为false，如果目标类没有声明接口，则spring将自动使用CGLIB动态代理。
+* `<aop:aspectj-autoproxy/>`声明自动为spring容器中那些配置@aspectj切面的bean创建代理，织入切面。当然，spring在内部依旧采用annotationAwareAspectAutoProxyCreator进行自动代理的创建工作，但具体实现的细节已经被`<aop:aspectj-autoproxy/>`隐藏起来了。`<aop:aspectj-autoproxy/>`有一个proxy-target-class属性，默认为false，表示使用jdk动态代理织入增强，当配置为true时，表示使用CGLIB动态代理技术织入增强。不过即使设置为false，如果目标类没有声明接口，则spring将自动使用CGLIB动态代理。
 
-* \<context:annotation-config/\>是用于激活那些已经在Spring容器中注册过的bean上面的注解，也就是显示的向Spring注册
+* `<context:annotation-config/>`是用于激活那些已经在Spring容器中注册过的bean上面的注解，也就是显示的向Spring注册
 
     * AutowriedAnnotationBeanPostProcessor
 
@@ -206,13 +209,13 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 
         这四个Processor，注册这4个BeanPostProcessor的作用，就是为了系统能够识别相应的注解。BeanPostProcessor就是处理注解的处理器。
     
-* \<mvc:annotation-driven/\>，该注解会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean，这是Spring MVC为“@Controller”分发请求所必需的，并且提供了数据绑定支持、“@NumberFormatannotation”支持，“@DataTimeFormat”支持、“@Valid”读写XML的支持（JAXB）和读写JSON的支持（默认jackson）等功能。
+* `<mvc:annotation-driven/>`，该注解会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean，这是Spring MVC为“@Controller”分发请求所必需的，并且提供了数据绑定支持、“@NumberFormatannotation”支持，“@DataTimeFormat”支持、“@Valid”读写XML的支持（JAXB）和读写JSON的支持（默认jackson）等功能。
 
   # Spring Mybatis
 
 * spring-jdbc.xml中可以使用`<context:property-placeholder location="***"/>`加载spring-jdbc.properties属性文件，也可以使用注册bean的方法加载属性文件
 
-    ​	<bean id="***" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <bean id="***" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 
     ​	<property name="location" value="classpath:***"/>
 
@@ -220,6 +223,197 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 
     ​      
 
-    ​      
+          # Spring Transaction
 
-      
+* 一个逻辑处理单元要成为事务，必须满足ACID（原子性、一致性、隔离性和持久性）属性。
+
+    * 原子性（Atomicity）：一个事务内的操作，要么全部执行成功，要么全部执行不成功。
+    * 一致性（Consistency）：事务执行后，数据库状态与其他业务规则保持一致。
+    * 隔离性（Isolation）：每个事务独立运行。
+    * 持久性（Durability）：事务一旦提交，数据库中的数据必须被永久地保存下来。
+
+* 事务的隔离级别分为四种。
+
+    * READ_UNCOMMITTED: 已读但未提交，会造成“脏读”。
+    * READ_COMMITTED: 不可重复读级别。
+    * REPEATEABLE_READ:可重复读级别。
+    * SERIALIZABLE: 顺序读是最严格的事务隔离级别。不能并发执行。
+
+* 事务隔离级别
+
+    | 事务隔离级别              | 脏读                 | 不可重复读           | 幻读                 |
+    | :------------------------ | -------------------- | -------------------- | -------------------- |
+    | ISOLATION_DEFAULT         | 同数据库事务隔离级别 | 同数据库事务隔离级别 | 同数据库事务隔离级别 |
+    | ISOLATION_READ_UNCOMMITED | 允许                 | 允许                 | 允许                 |
+    | ISOLATION_READ_COMMITED   | 禁止                 | 允许                 | 允许                 |
+    | ISOLATION_REPETABLE_READ  | 禁止                 | 禁止                 | 允许                 |
+    | ISOLATION_SERIALIZABLE    | 禁止                 | 禁止                 | 禁止                 |
+
+* 事务传播行为：用来描述由某一个事务传播行为修饰的方法被嵌套进另一个的时候，事务的传播性。
+
+    | 事务传播行为类别          | 说明                                                         |
+    | ------------------------- | ------------------------------------------------------------ |
+    | PROPAGATION_REQUIRED      | 如果当前没有事务，就新建一个事务；如果已经存在一个事务中，就加入到这个事务中。 |
+    | PROPAGATION_SUPPORTS      | 支持当前事务。如果当前没有事务，就以非事务方式执行。         |
+    | PROPAGATON_MANDATORY      | 使用当前事务。如果当前没有事务，就抛出异常。                 |
+    | PROPAGATION_REQUIRES_NEW  | 新建事务。如果当前存在事务，把当前事务挂起。                 |
+    | PROPAGATION_NOT_SUPPORTED | 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。   |
+    | PROPAGATION_NEVER         | 以非事务方式执行操作，如果当前存在事务，则抛出异常。         |
+    | PROPAGATION_NESTED        | 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作。与PROPAGATION_REQUIRES_NEW的差别是PROPAGATION_REQUIRES_NEW另起一个事务，将于其父事务相互独立。PROPAGATION_NESTED事务和其父事务时相依的，其要等 父事务一起提交。 |
+
+# Spring Redis
+
+* Redis支持：String字符串类型；Hash哈希类型，键值对集合；List列表类型，用于保存元素列表；Set集合类型，存放多个元素的无序集合；SortedSet有序集合类型，每个元素都会关联一个double类型的分数。
+
+* redis String类型相关命令
+
+  | 命令                                                  | 解释                                                         |
+  | ----------------------------------------------------- | ------------------------------------------------------------ |
+  | SET key value [EX seconds] [PX milliseconds] [NX\|XX] | 设置键值数据，SET key value EX second效果等同于SETEX key second value。SET key value PX millisecond效果等同于PSETEX key millisecond value。NX键不存在时对键进行操作，XX键存在时对键进行操作。SET key value NX等同于SETNX key value。 |
+  | GET key                                               | 获取key的value值                                             |
+  | GETRANGE key start end                                | 查询key对用value的子字符串。                                 |
+  | GETSET key value                                      | 将key的值设置为value，然后返回旧的value值。                  |
+  | MGET key1 key2...                                     | 批量获取多个key的值。                                        |
+  | SETEX key timeout value                               | 创建键值对，并设置key的过期时间为timeout，单位秒。           |
+  | TTL key                                               | 查询key的剩余时间，TTL（Time To Live），-2表示该key不存在。  |
+  | SETNX key value                                       | SETEX（Set if Not Exists）                                   |
+  | SETRANGE key offset value                             | 用value参数覆盖key所存储的字符串值，从偏移量offset开始。     |
+  | STRLEN key                                            | 返回key的字符串长度                                          |
+  | MSET key1 value1 key2 value2                          | 同时设置一个或多个键值对。                                   |
+  | MSETNX key1 value1 key2 value2                        | 当且仅当所有给定的key都不存在，同时设置一个或多个key-value   |
+  | INCR key                                              | 将key中存储的数字类型的value值加一。                         |
+  | INCRBY key increment                                  | 将key中存储的数字类型的value值加increment。                  |
+  | DECR key                                              | 将key中存储的数字类型的value值减一。                         |
+  | DECRBY key decrement                                  | 将key中存储的数字类型的value值减decrement。                  |
+  | APPEND key value                                      | 如果key存在一个字符串值，则将value追加到原值后面。           |
+
+* Hash类型命令
+
+  | 命令                                  | 解释                                        |
+  | ------------------------------------- | ------------------------------------------- |
+  | HSET key field value                  | 设置key中filed属性值为value。               |
+  | HGET key field                        | 获取存储在哈希表key中field的值。            |
+  | HEXISTS key field                     | 查看哈希表中指定字段是否存在。              |
+  | HINCRBY key field increment           | 将指定哈希表key中的field数值增加increment。 |
+  | HGETALL key                           | 获取哈希表key中所有的字段和值。             |
+  | HKEYS key                             | 获取哈希表key中所有的字段。                 |
+  | HLEN key                              | 获取哈希表key中所有字段个数。               |
+  | HMGET key field1 field2               | 获取哈希表key中所有给定字段的值。           |
+  | HMSET key field1 value1 field2 value2 | 同时将多个键值对存放在key中。               |
+  | HVALS key                             | 获取哈希表key中所有的值。                   |
+
+* List类型命令
+
+  | 命令                                  | 解释                                                         |
+  | ------------------------------------- | ------------------------------------------------------------ |
+  | LPUSH key value [value2]              | 将一个或多个值插入列表的头部。                               |
+  | LRANGE key start stop                 | 获取列表指定范围内的元素。                                   |
+  | RPUSH key value [value2]              | 将一个或多个值插入列表的尾部。                               |
+  | LINDEX key index                      | 查询列表key指定位置index的值。                               |
+  | BLPOP key1 [key2] timeout             | 移除并返回列表的第一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可移除元素为止。 |
+  | BRPOP key1 [key2]                     | 移除并返回列表的最后一个元素，如果列表没有元素胡阻塞列表直到等待超时或发现可移除元素为止。 |
+  | LINSERT key BEFORE\|AFTER pivot value | 在列表元素的前或者后插入元素。                               |
+  | LTRIM key start stop                  | 对一个列表进行截取，让列表只保留指定区间的元素，不在指定区间的元素删除。 |
+
+* Set类型命令
+
+  | 命令                       | 解释                                                   |
+  | -------------------------- | ------------------------------------------------------ |
+  | SADD key member1 member2   | 向集合key中添加一个或多个元素。                        |
+  | SMEMBERS key               | 查看集合key中素有元素。                                |
+  | SCARD key                  | 查询集合key中元素个数。                                |
+  | SISMEMBER key member       | 判断member是否是key中的元素。                          |
+  | SDIFF key1 [key2]          | 查询给定所有集合的差集。key1中去掉同时存在key2中元素。 |
+  | SINTER key1 [key2]         | 查询给定所有集合的交集。                               |
+  | SUNION key1 [key2]         | 查询给定所有集合的合集。                               |
+  | SRANDMEMBER key [count]    | 返回集合key中count个随机元素。                         |
+  | SPOP key                   | 移除并返回集合中一个随机元素。                         |
+  | SREM key member1 [member2] | 移除集合中一个或多个元素。                             |
+
+* SortedSet类型命令
+
+  | 命令                                        | 解释                                                         |
+  | ------------------------------------------- | ------------------------------------------------------------ |
+  | ZADD key score1 member1 [score2 member2]    | 向有序集合添加一个或多个元素，且不存在重复元素。             |
+  | ZCARD key                                   | 获取有序集合key的元素个数。                                  |
+  | ZRANGE key start end [withscores]           | 返回指定区间有序集合的元素。                                 |
+  | ZCOUNT key min max                          | 计算分数在指定区间元素的个数。                               |
+  | ZRANGEBYSCORE key min max                   | 通过分数查询指定区间的元素。                                 |
+  | ZRANK key member                            | 返回有序集合key中指定成员的索引值。                          |
+  | ZREVRANGE key start end [withscores]        | 通过索引区间，按照分数从高到低顺序查询有序集合中指定区间内的成员。 |
+  | ZREVRANGEBYSCORE key start end [withscores] | 通过分数区间，按照分数从高到底顺序查询有序集合中指定区间内的成员。 |
+  | ZREVRANK key member                         | 查询有序集合按分数递减排序是，指定元素的排名。               |
+  | ZSCORE key member                           | 查询有序集合中指定成员的分数值。                             |
+  | ZREM key member1 [member2]                  | 删除有序集合中一个或多个成员。                               |
+  | ZREMRANGEBYSCORE key min max                | 删除有序集合中给定分数区间的所有元素。                       |
+
+* Redis分别提供了RDB（Redis DataBase）和AOF（Append Only File）两种持久化模式。
+
+* Redis主从复制架构的特点是主节点负责接收写入数据的请求，从节点负责接收查询数据的请求，主节点定期把数据同步给从节点。
+
+* 主从复制架构虽然可以提交读并发，但也有缺点：
+  * 如果主节点出现问题，则不能提供服务。
+  * 主节点单机写能力有限。
+  
+* 哨兵机制（sentinel）：主节点出现故障时，由Redis哨兵自动完成故障发现和转移，并通知Redis客户端，实现高可用性。
+
+* 集群模式（cluster）：可以在多个Redis节点之间进行数据共享的结构。Redis集群通过分区容错（partition）来提高可用性（availability），即使集群中一部分节点失效或者无法进行通讯，集群可以继续处理命令请求。
+  * 将数据切分到多个Redis节点。
+  * 当集群中部分节点失效或者无法通讯时，整个集群仍可以处理请求。
+  
+* 为了使Redis集群在出现问题时仍可以正常运行，Redis集群对节点使用了主从复制功能，及集群中的每个节点有1个Master主节点和若干个从节点。
+
+* CAP原则：一个分布式系统中，一致性（consistency）、可用性（availability）、分区容错性（partition tolernace）三者不可兼得。Redis集群不保证强一致性。
+
+  * 对于Majority一方，如果一个节点未能在节点超时所设定的时限内重新联系上集群，那么集群会将这个主节点视为下线，并使用从节点来替代这个主节点工作。
+  * 队友Minority一方，如果一个节点未能在节点超时所设定的时限内重新联系上集群，那么它将停止处理写命令，并向客户端报告错误。
+
+* 如下两种情况发生，整个集群不可用。
+
+  * 某个Master节点下线，并且这个Master节点没有可用的Slave节点。
+  * 集群中过半数Master节点下线，无论Master节点是否有Slave节点。
+  
+* 缓存穿透：频繁查询根本不存在的数据，导致缓存层和存储层都不会命中。
+
+  * 缓存空对象
+  * 布隆过滤器拦截
+
+* 缓存雪崩：缓存大量是小或者缓存整体不能提供服务，导致大量请求到达存储层。
+
+  * 保存缓存层的高可用性：使用哨兵模式，或者集群模式。
+  * 限流降级组件。Hystrix
+  * 缓存不过期。
+  * 优化缓存过期时间。
+  * 使用互斥锁重建缓存。
+  * 异步重建缓存。
+
+# Spring ZooKeeper
+
+* ZooKeeper是开放代码的分布式协调服务框架，是一个为分布式应用提供一致性服务的组件。
+
+  | 角色               | 描述                                                     |
+  | ------------------ | -------------------------------------------------------- |
+  | 领导者（Leader）   | 领导者负责投票的发起和决议，更新系统状态                 |
+  | 跟随着（Follower） | 接受客户端请求并返回结果，在选举阶段参与投票             |
+  | 观察者（Observer） | 接受客户端连接，将写请求转发给Leader，不参与选举阶段投票 |
+  | 客户端（Client）   | 请求的发起方                                             |
+
+* 每个Znode由三部分组成
+
+  | 名称     | 解释                          |
+  | -------- | ----------------------------- |
+  | stat     | 存储状态信息                  |
+  | data     | 存储数据，数据大小不能超过1MB |
+  | children | 存储子节点                    |
+
+* Znode类型
+
+  | 类型                  | 解释         |
+  | --------------------- | ------------ |
+  | PERSISTENT            | 持久节点     |
+  | PERSISTENT_SEQUENTIAL | 持久顺序节点 |
+  | EPHEMERAL             | 临时节点     |
+  | EPHEMERAL_SEQUENTIAL  | 临时顺序节点 |
+
+  
+

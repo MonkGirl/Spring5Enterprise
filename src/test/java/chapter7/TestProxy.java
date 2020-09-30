@@ -1,3 +1,4 @@
+package chapter7;
 import com.monkgirl.spring5.chapter3.proxy.AnimalInvocationHandler;
 import com.monkgirl.spring5.chapter3.proxy.CatMethodInterceptor;
 import com.monkgirl.spring5.comm.entities.Cat;

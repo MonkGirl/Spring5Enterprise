@@ -1,3 +1,5 @@
+package chapter6;
+
 import com.monkgirl.spring5.comm.entities.*;
 import com.monkgirl.spring5.comm.interfaces.Listener;
 import org.junit.jupiter.api.Test;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monkgirl.spring5.chapter13.dao.AccountBalanceDAO">
+    <resultMap id="BaseResultMap" type="com.monkgirl.spring5.chapter13.entity.AccountBalance">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result  column="customer_id" jdbcType="VARCHAR" property="customerId"/>
+        <result  column="balance" jdbcType="DECIMAL" property="balance"/>
+        <result  column="add_date" jdbcType="TIMESTAMP" property="addDate"/>
+        <result  column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+
+    <select id="queryAccountByCustomerId" parameterType="java.lang.Integer" resultType="double">
+        SELECT balance FROM account_balance WHERE customer_id = #{id, jdbcType=BIGINT}
+    </select>
+
+    <delete id="saveAccountBalance" parameterType="com.monkgirl.spring5.chapter13.entity.AccountBalance">
+        INSERT INTO account_balance(customer_id, balance) values(#{customerId, jdbcType=VARCHAR}, #{balance, jdbcType=DECIMAL})
+    </delete>
+
+    <update id="updateAccountBalance" parameterType="com.monkgirl.spring5.chapter13.entity.AccountBalance">
+        UPDATE account_balance SET balance = #{balance,jdbcType=DECIMAL} WHERE customer_id = #{id, jdbcType=BIGINT}
+    </update>
+
+</mapper>

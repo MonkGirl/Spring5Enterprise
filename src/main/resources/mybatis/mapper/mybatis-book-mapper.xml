@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monkgirl.spring5.chapter14.dao.BookDAO">
+    <resultMap id="BaseResultMap" type="com.monkgirl.spring5.chapter14.entities.Book">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result  column="name" jdbcType="VARCHAR" property="name"/>
+        <result  column="price" jdbcType="DECIMAL" property="price"/>
+        <result  column="add_date" jdbcType="TIMESTAMP" property="addDate"/>
+        <result  column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+
+    <select id="query" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM book WHERE id = #{id, jdbcType=BIGINT}
+    </select>
+
+    <insert id="save" parameterType="com.monkgirl.spring5.chapter14.entities.Book">
+        INSERT INTO book(name, price) values(#{name, jdbcType=VARCHAR}, #{price, jdbcType=DECIMAL})
+    </insert>
+
+</mapper>

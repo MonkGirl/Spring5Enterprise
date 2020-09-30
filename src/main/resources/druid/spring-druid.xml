@@ -16,14 +16,14 @@
         <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
             <property name="patterns">
                 <list>
-                    <value>com.monkgirl.spring5.chapter12.service.*</value>
-                    <value>com.monkgirl.spring5.chapter12.dao.*</value>
+                    <value>com.monkgirl.spring5.*.service.*</value>
+                    <value>com.monkgirl.spring5.*.dao.*</value>
                 </list>
             </property>
         </bean>
 
         <aop:config>
-            <aop:pointcut id="druid-stat-pointcut" expression="execution(* com.monkgirl.spring5.chapter12..*(..))" />
+            <aop:pointcut id="druid-stat-pointcut" expression="execution(* com.monkgirl.spring5.*..*(..))" />
             <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut"/>
         </aop:config>
 

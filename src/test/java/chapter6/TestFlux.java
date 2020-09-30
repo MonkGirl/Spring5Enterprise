@@ -1,3 +1,4 @@
+package chapter6;
 import com.monkgirl.spring5.chapter6.webflux.FluxMain;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;

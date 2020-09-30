@@ -10,11 +10,24 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.monkgirl.spring5.chapter12.dao"/>
+        <property name="basePackage" value="com.monkgirl.spring5.*.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryNew"/>
     </bean>
 
     <bean id="transactionManagerMybatis" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="transactionManagerMybatis"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="add*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+                <prop key="find*">PROPAGATION_REQUIRED, readOnly</prop>
+            </props>
+        </property>
     </bean>
 </beans>

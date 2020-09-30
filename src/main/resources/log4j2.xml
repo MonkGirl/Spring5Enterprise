@@ -24,7 +24,7 @@
     </Appenders>
 
     <Loggers>
-        <logger name="com.monkgirl.spring5.chapter12" level="debug">
+        <logger name="com.monkgirl.spring5" level="debug">
             <AppenderRef ref="rollingFile" />
         </logger>
         <Root level="info">

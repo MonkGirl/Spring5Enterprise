@@ -1,3 +1,4 @@
+package chapter7;
 import com.monkgirl.spring5.chapter2.lifecycle.BeanLifeCycle;
 import com.monkgirl.spring5.chapter2.service.Something;
 import org.junit.jupiter.api.Test;
