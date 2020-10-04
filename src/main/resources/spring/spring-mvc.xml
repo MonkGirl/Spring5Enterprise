@@ -52,4 +52,5 @@
     <import resource="spring-mybatis.xml"/>
     <import resource="classpath:druid/spring-druid.xml"/>
     <import resource="classpath:redis/config/spring-redis.xml"/>
+    <import resource="classpath:zookeeper/spring-zookeeper.xml"/>
 </beans>
