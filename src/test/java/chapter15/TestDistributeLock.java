@@ -34,19 +34,19 @@ class TestDistributeLock {
     void testLock() {
         final SharedResource sharedResource = new SharedResource();
         ExecutorService executor = Executors.newFixedThreadPool(QTY);
-        for(int i =0;i<QTY;i++){
-           final int index = i;
-           Runnable task = () -> {
-               try {
-                   final DistributeClient client = new DistributeClient(zooKeeperClient.getCuratorFramework(), PATH, sharedResource, "Client_" + index);
-                   client.doWork(10, TimeUnit.SECONDS);
-               } catch (Throwable e) {
-                   e.printStackTrace();
-               }finally{
-                   CloseableUtils.closeQuietly(zooKeeperClient.getCuratorFramework());
-               }
-           };
-           executor.submit(task);
+        for (int i = 0; i < QTY; i++) {
+            final int index = i;
+            Runnable task = () -> {
+                try {
+                    final DistributeClient client = new DistributeClient(zooKeeperClient.getCuratorFramework(), PATH, sharedResource, "Client_" + index);
+                    client.doWork(10, TimeUnit.SECONDS);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                } finally {
+                    CloseableUtils.closeQuietly(zooKeeperClient.getCuratorFramework());
+                }
+            };
+            executor.submit(task);
         }
 
         executor.shutdown();
@@ -54,7 +54,7 @@ class TestDistributeLock {
             executor.awaitTermination(10, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             CloseableUtils.closeQuietly(zooKeeperClient.getCuratorFramework());
         }
     }
