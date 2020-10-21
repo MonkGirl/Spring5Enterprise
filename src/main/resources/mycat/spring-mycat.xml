@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSourceMyCat" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:8066/studydb"/>
+        <property name="username" value="monkgirl"/>
+        <property name="password" value="MySql_123"/>
+    </bean>
+
+    <bean id="sqlSessionFactoryMyCat" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceMyCat"/>
+        <property name="mapperLocations" value="classpath:mybatis/mapper/*-mapper.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.monkgirl.spring5.chapter12.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMyCat"/>
+    </bean>
+</beans>

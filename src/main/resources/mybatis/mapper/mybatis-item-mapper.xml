@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monkgirl.spring5.chapter17.dao.ItemDAO">
+    <resultMap id="BaseResultMap" type="com.monkgirl.spring5.chapter17.entities.Item">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result  column="value" jdbcType="INTEGER" property="value"/>
+        <result  column="add_date" jdbcType="TIMESTAMP" property="addDate"/>
+        <result  column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+
+    <select id="query" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM item WHERE id = #{id, jdbcType=BIGINT}
+    </select>
+
+    <insert id="save" parameterType="com.monkgirl.spring5.chapter17.entities.Item">
+        INSERT INTO item(id, value) VALUES(#{id, jdbcType=BIGINT}, #{value, jdbcType=BIGINT})
+    </insert>
+
+</mapper>
