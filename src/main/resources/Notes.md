@@ -465,7 +465,7 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
   
 * 远程过程调用协议（RPC：Remote Procedure Call）是一种通过网络从远程计算机程序上请求的服务，而不需要客户端程序了解底层网络技术的协议。RPC协议使用了某些传输协议，如TCP或UDP，为通信程序之间传输信息数据。在OSI网络通信模型中，RPC跨越了传输层和应用层。
 
-* RPC调用流程：
+* **RPC**调用流程：
 
   * **Client**为服务调用方，以本地调用的方式调用服务。
   * **Client Stub**接受调用方的调用请求后，将方法和参数等序列化为消息体。 
@@ -476,5 +476,7 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
   * **Server Stub**将结果序列化，并通过网络传输给调用方。
   * **Client Stub**接收到响应消息体，并反序列化。
   * **Client**最终得到服务端响应结果。
+
+* **SPI**(Service Provider Interface)，是java提供的一套用来被第三方实现或者扩展的API，SPI可以用来启用框架扩展和替换组件。
 
   

@@ -1,0 +1,2 @@
+com.monkgirl.spring5.chapter19.spi.impl.ChineseSpiHelloServiceImpl
+com.monkgirl.spring5.chapter19.spi.impl.EnglishSpiHelloServiceImpl
