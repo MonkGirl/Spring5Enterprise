@@ -479,4 +479,16 @@ Spring IoC容器中的bean，是以容器扩展的形式注册到Spring中的。
 
 * **SPI**(Service Provider Interface)，是java提供的一套用来被第三方实现或者扩展的API，SPI可以用来启用框架扩展和替换组件。
 
+  # Pattern
+  
+* **工厂模式（FacotryPattern）**：工厂模式隶属于创建型模式，提供了一种创建对象的最佳方式。
+
+* **抽象工厂模式（AbstractFactoryPattern）**：抽象工厂围绕一个超级工厂创建其他工厂。
+
+* **单例模式（SingletonPattern）**：确保一个类只生成一个对象。
+
+* **建造者模式（BuilderPattern）**：将多个简单对象构建成一个复杂的对象。
+
+* **原型模式（PrototypePattern）**：用于创建重复的对象。
+
   
