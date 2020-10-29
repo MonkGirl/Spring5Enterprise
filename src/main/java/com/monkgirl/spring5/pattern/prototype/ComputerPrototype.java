@@ -15,6 +15,9 @@ import java.util.Map;
  * @description
  */
 public class ComputerPrototype {
+    private ComputerPrototype(){
+
+    }
     private static final Map<String, Computer> computerMap = new HashMap<>();
 
     static {

@@ -9,6 +9,17 @@ import com.monkgirl.spring5.pattern.prototype.Computer;
  * @description
  */
 public class Asus extends Computer {
+    private static int no = 0;
+    private final int id;
+
+    public Asus() {
+        id = no++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     @Override
     public void make() {
         System.out.println("produce a asus computer.");
