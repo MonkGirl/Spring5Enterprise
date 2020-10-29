@@ -3,7 +3,6 @@ package com.monkgirl.spring5.chapter15.listen.subscriber;
 import com.monkgirl.spring5.chapter15.client.ZooKeeperClient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
-import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 
 /**
  * @author MissYoung
