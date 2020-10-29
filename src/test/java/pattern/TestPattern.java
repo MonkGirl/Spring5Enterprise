@@ -38,7 +38,6 @@ import com.monkgirl.spring5.pattern.memento.Original;
 import com.monkgirl.spring5.pattern.memento.StateKeeper;
 import com.monkgirl.spring5.pattern.nullobject.AbstractObject;
 import com.monkgirl.spring5.pattern.nullobject.ObjectFactory;
-import com.monkgirl.spring5.pattern.observer.Observer;
 import com.monkgirl.spring5.pattern.observer.WeChatPublic;
 import com.monkgirl.spring5.pattern.observer.WeChatUser;
 import com.monkgirl.spring5.pattern.prototype.ComputerPrototype;
