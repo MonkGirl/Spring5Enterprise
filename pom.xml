@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <spring.framework.version>5.3.2</spring.framework.version>
+        <spring.framework.version>6.0.0</spring.framework.version>
         <reactor.version>3.3.9.RELEASE</reactor.version>
         <freemarker.version>2.3.30</freemarker.version>
         <druid.version>1.1.24</druid.version>
